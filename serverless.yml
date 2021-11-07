@@ -1,0 +1,23 @@
+service: webscraper-aws
+
+provider:
+  name: aws
+  region: sa-east-1
+
+plugins:
+  - serverless-mocha-plugin
+  - serverless-offline    
+
+functions:
+  webscrap:
+    handler: handler/webscrap/controller.handler
+    events:
+      - http:
+          path: /webscrap
+          method: get
+  products:
+    handler: handler/products/controller.handler
+    events:
+      - http:
+          path: /products
+          method: get

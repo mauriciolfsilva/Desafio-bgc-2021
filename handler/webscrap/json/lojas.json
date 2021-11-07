@@ -1,0 +1,26 @@
+{
+    "americanas": {
+        "infoClasses": [
+            {
+                "divClass": ".TextUI-xlll2j-3",
+                "infoName": "ranking",
+                "ocurrence": 0
+            },
+            {
+                "divClass": ".card-product-name",
+                "infoName": "description",
+                "ocurrence": 0
+            },
+            {
+                "divClass": ".rating-star-average",
+                "infoName": "rating",
+                "ocurrence": 0
+            },
+            {
+                "divClass": ".value",
+                "infoName": "price",
+                "ocurrence": 1
+            }
+        ]
+    }
+}
