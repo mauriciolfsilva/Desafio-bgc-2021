@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const ProductsRepository = require('../../webscrap/repository/ProductsRepository');
 
 class ProductsService {
