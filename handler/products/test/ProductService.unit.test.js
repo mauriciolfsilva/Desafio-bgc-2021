@@ -24,27 +24,28 @@ describe('Products controller', () => {
         })
 
         it('Success', async () => {
-            const mockDynamoItems = { 
+            const mockDynamoItems = {
                 Items: [
-                    { 
+                    {
                         loja: { S: 'americanas' },
                         ranking: { N: '2' },
                         description: { S: 'nomeProduto' },
-                        price: { N: '42.42'},
+                        price: { N: '42.42' },
                         rating: { N: '4.2' }
                     }
-                ] 
+                ]
             };
             mockProductsRepositoryGetItems.returns(mockDynamoItems);
 
             const result = await subject.run();
-            const expectResult = [{
-                loja: 'americanas',
-                ranking: '2',
-                description: 'nomeProduto',
-                price: '42.42',
-                rating: '4.2'
-            }]
+            const expectResult = {
+                products: [{
+                    loja: 'americanas',
+                    ranking: '2',
+                    description: 'nomeProduto',
+                    price: '42.42',
+                    rating: '4.2'
+                }]}
 
             expect(mockProductsRepositoryGetItems).to.be.called;
             expect(result).to.eql(expectResult);

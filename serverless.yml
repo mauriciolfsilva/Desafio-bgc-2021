@@ -1,12 +1,17 @@
 service: webscraper-aws
 
+
 provider:
   name: aws
   region: sa-east-1
+  runtime: nodejs14.x
 
 plugins:
   - serverless-mocha-plugin
   - serverless-offline    
+
+Layers:
+  - 'arn:aws:lambda:sa-east-1:764866452798:layer:chrome-aws-lambda:25'
 
 functions:
   webscrap:

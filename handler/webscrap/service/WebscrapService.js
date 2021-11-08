@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const lojas = require('../json/lojas.json');
 const ProductsRepository = require('../repository/ProductsRepository');
+const chromium = require('chrome-aws-lambda');
 
 class WebscrapService {
     constructor() {
@@ -14,6 +15,9 @@ class WebscrapService {
     async run() {
         this.browser = await this.newBrowser();
         this.page = await this.browser.newPage();
+
+        const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:90.0) Gecko/20100101 Firefox/90.0';
+        await this.page.setUserAgent(userAgent);
 
         let products = await this.getPageProducts('https://www.americanas.com.br/hotsite/atalho-ud', '.zion-vitrine__CardItem-sc-17vxood-1', this.productQuantity);
 
@@ -31,7 +35,13 @@ class WebscrapService {
     }
 
     async newBrowser() {
-        return puppeteer.launch({ headless: false });
+        return chromium.puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: false,
+            ignoreHTTPSErrors: true,
+        });
     }
 
     async getPageProducts(link, divClass, productQuantity) {

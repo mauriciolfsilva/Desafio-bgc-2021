@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const ProductsRepository = require('../../webscrap/repository/ProductsRepository');
 
 class ProductsService {
@@ -10,7 +9,7 @@ class ProductsService {
         try {
             const result = await this.productsRepository.getItems(3);
             const products = this.itemsToProducts(result.Items);
-            return products;
+            return { products };
         } catch (error) {
             throw  new Error(error);
         }
